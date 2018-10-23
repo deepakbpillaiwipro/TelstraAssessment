@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Kingfisher (4.7.0)
+  - MBProgressHUD (1.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.6)
+  - Kingfisher (~> 4.0)
+  - MBProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Kingfisher
+    - MBProgressHUD
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+
+PODFILE CHECKSUM: 27469f948dbeb21206c7223b1245214fcc018fe9
+
+COCOAPODS: 1.5.3
