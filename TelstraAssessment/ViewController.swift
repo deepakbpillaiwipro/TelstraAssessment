@@ -30,6 +30,14 @@ class ViewController: UIViewController {
         return layout
     }()
     
+    lazy var refreshControl:UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .blue
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.alwaysBounceVertical = true
+        return refreshControl
+    }()
+    
     var interactor:ViewInteractorProtocol?
     var listData:[ServiceListObject]?
     
@@ -55,17 +63,22 @@ class ViewController: UIViewController {
         
         super.viewWillAppear(animated)
         setupView()
-        self.interactor?.getListOfData()
+        loadData()
     }
     
     //MARK:- Internal Methods
+    private func loadData(){
+        
+        self.interactor?.getListOfData()
+    }
     private func setupView(){
         
         self.view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activateConstants()
+        collectionView.addSubview(refreshControl)
     }
-    
+
     private func activateConstants(){
         
         NSLayoutConstraint.activate([
@@ -75,5 +88,11 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0)
         ])
+    }
+    
+    @objc private func refresh(){
+        
+        loadData()
+        refreshControl.endRefreshing()
     }
 }
