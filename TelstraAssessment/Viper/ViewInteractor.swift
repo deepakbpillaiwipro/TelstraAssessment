@@ -20,10 +20,10 @@ class ViewInteractor: ViewInteractorProtocol {
         
         ServiceLayer.sharedInstance().getListData(completion: { (obj) in
             
-            
+            self.presenter?.prepareDataToDisplay(_data: obj, and: nil)
         }) { (errorObj) in
             
-            
+            self.presenter?.prepareDataToDisplay(_data: nil, and: errorObj)
         }
     }
 }

@@ -31,4 +31,11 @@ class CommonUtilities: NSObject {
         
         return false
     }
+    
+    class func showAlert(message:String)->UIAlertController{
+        
+        let alert = UIAlertController.init(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: nil))
+        return alert
+    }
 }

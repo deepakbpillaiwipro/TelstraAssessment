@@ -9,6 +9,12 @@
 import UIKit
 import Kingfisher
 
+protocol ViewControllerProtocol {
+    
+    func showList(title:String, rows:[ServiceListObject])
+    func showError(message:String)
+}
+
 extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -22,13 +28,18 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
         //Resetting reused cells
         cell.titleLabel.text = ""
         cell.descriptionLabel.text = ""
-        cell.imageView.image = nil
+        cell.imageView.image = UIImage.init(named: "placeholder")
         
         //Assign Values
-        cell.titleLabel.text = "Title"
-        cell.descriptionLabel.text = "Description  weihf iwe fiw efi bweb fyw ef iwyef ihw fiyw efu iuw fou wieu fvwou efiu9w eu weuif wije fiuwe fijew fiub we"
-        cell.imageView.image = UIImage.init(named: "placeholder")
-        //cell.imageView.kf.setImage(with: )
+        if let listData = self.listData{
+         
+            cell.titleLabel.text = listData[indexPath.item].titleString
+            cell.descriptionLabel.text = listData[indexPath.item].descriptionString
+            if let imageUrl = listData[indexPath.item].imageLinkStrig{
+                
+                cell.imageView.kf.setImage(with: URL.init(string: imageUrl))
+            }
+        }
         return cell
     }
     
@@ -41,5 +52,21 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
     fileprivate func calculateCellWidth(for collectionView: UICollectionView, section: Int) -> CGFloat {
         
         return collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
+    }
+}
+
+extension ViewController : ViewControllerProtocol{
+    
+    func showList(title: String, rows: [ServiceListObject]) {
+        
+        self.listData = rows
+        self.title = title
+        self.collectionView.reloadData()
+    }
+    
+    func showError(message: String) {
+        
+        self.title = ""
+        self.navigationController?.present(CommonUtilities.showAlert(message: message), animated: true, completion: nil)
     }
 }

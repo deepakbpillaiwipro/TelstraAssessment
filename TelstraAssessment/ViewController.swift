@@ -8,12 +8,6 @@
 
 import UIKit
 
-protocol ViewControllerProtocol {
-    
-    func showList(title:String, rows:[ServiceListObject])
-    func showError(message:String)
-}
-
 class ViewController: UIViewController {
     
     lazy var collectionView:UICollectionView = {
@@ -36,11 +30,32 @@ class ViewController: UIViewController {
         return layout
     }()
     
+    var interactor:ViewInteractorProtocol?
+    var listData:[ServiceListObject]?
+    
     //MARK:- View Lifecycle
+    func setup(){
+        
+        let viewcontroller = self
+        let interactor = ViewInteractor()
+        let presenter = ViewPresenter()
+        
+        interactor.presenter = presenter
+        presenter.viewController = viewcontroller
+        viewcontroller.interactor = interactor
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
         setupView()
+        self.interactor?.getListOfData()
     }
     
     //MARK:- Internal Methods
