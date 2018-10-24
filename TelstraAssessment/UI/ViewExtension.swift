@@ -37,7 +37,7 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
             cell.descriptionLabel.text = listData[indexPath.item].descriptionString
             if let imageUrl = listData[indexPath.item].imageLinkStrig{
                 
-                cell.imageView.kf.setImage(with: URL.init(string: imageUrl))
+                cell.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:"placeholder"), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)
             }
         }
         return cell
