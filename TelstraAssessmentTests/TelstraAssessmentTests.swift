@@ -21,19 +21,21 @@ class TelstraAssessmentTests: XCTestCase {
         super.tearDown()
     }
     
+    //Testing collection view
+    var vc = ViewController()
+    func testControllerHasTableView() {
+        vc.loadViewIfNeeded()
+        XCTAssertNotNil(vc.collectionView, "Controller should have a collectionView")
+    }
+    
+    //Testing title value
     func testTitleString(){
         
         let promise = expectation(description: "Title string value recieved")
         ServiceLayer.sharedInstance().getListData(completion: { (dataOject) in
             
-            if (dataOject.title?.count)! > 0{
-                
-                promise.fulfill()
-            }
-            else{
-                
-                XCTFail("Unable to read title string from server")
-            }
+            XCTAssertTrue((dataOject.title?.count)! > 0, "Title cannot be empty")
+            promise.fulfill()
             
         }) { (errorObject) in
             
@@ -42,11 +44,22 @@ class TelstraAssessmentTests: XCTestCase {
         
         waitForExpectations(timeout: 60, handler: nil)
     }
-    func testNetworkResponse(){
+    
+    //Testing internet reachiblity
+    func testInternetReachiblity(){
+        
+        if !CommonUtilities.isConnectedToInternet(){
+            
+            XCTFail("Not connected to internet")
+        }
+    }
+    //testing server list response 
+    func testRowResponse(){
         
         let promise = expectation(description: "Data collected")
         ServiceLayer.sharedInstance().getListData(completion: { (dataOject) in
             
+            XCTAssertTrue((dataOject.rows?.count)! > 0, "Data cannot be empty")
             promise.fulfill()
         }) { (errorObject) in
             
