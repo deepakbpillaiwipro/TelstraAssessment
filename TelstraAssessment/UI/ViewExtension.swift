@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
@@ -27,7 +28,7 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
         cell.titleLabel.text = "Title"
         cell.descriptionLabel.text = "Description  weihf iwe fiw efi bweb fyw ef iwyef ihw fiyw efu iuw fou wieu fvwou efiu9w eu weuif wije fiuwe fijew fiub we"
         cell.imageView.image = UIImage.init(named: "placeholder")
-        
+        //cell.imageView.kf.setImage(with: )
         return cell
     }
     
