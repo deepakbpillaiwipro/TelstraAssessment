@@ -12,9 +12,14 @@ struct Constants {
     
     struct NetworkConstants {
         
-        static let kServiceBaseURL = "https://dl.dropboxusercontent.com/"
+        static let kServiceBaseURL = "https://dl.dropboxusercontent.com"
         static let kSuccessString = "SUCCESS"
         static let kServiceError = "Service Error"
         static let kErrorUserInfo = "UserInfo"
+    }
+    
+    struct ApplicationConstants {
+        
+        static let loadingString = "Loading.."
     }
 }

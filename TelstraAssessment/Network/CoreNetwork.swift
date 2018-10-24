@@ -34,6 +34,7 @@ class NetworkLayerHelper: NSObject {
     }
     
     class fileprivate func createRequest(baseUrl: String, httpMethod: HTTPMethod, headers: Dictionary<String, String>, body: Data?) -> URLRequest? {
+        
         guard let url = URL(string: NetworkLayerHelper.getCompleteUrlFrom(baseUrl: baseUrl)) else {
             return nil
         }
@@ -84,7 +85,7 @@ class CoreNetwork: NSObject {
         
         if shouldCallNetworkRequestInBackground == false{
             
-            UIUtilities.showGlobalProgressHUD(withTitle: "Loading..")
+            UIUtilities.showGlobalProgressHUD(withTitle: Constants.ApplicationConstants.loadingString)
         }
         CoreNetwork.alamoFireManager?.request(url, method: method, parameters: param, encoding: encoding, headers: headers).responseData { (dataResponse) in
             
@@ -92,14 +93,18 @@ class CoreNetwork: NSObject {
                 
                 UIUtilities.dismissGlobalHUD()
             }
+            
             //For testing purpose only
             do {
                 print("\n\n\(dataResponse.request?.url?.absoluteString ?? "")")
-                let jsonDataOld = try JSONSerialization.jsonObject(with: dataResponse.data!) as! [String:Any]
+                let stringValue = String(data: dataResponse.data!, encoding: .ascii) ?? ""
+                let backToData = stringValue.data(using: .utf8)! as Data
+                let jsonDataOld = try JSONSerialization.jsonObject(with: backToData) as! [String:Any]
                 let jsonData: Data = try JSONSerialization.data(withJSONObject: jsonDataOld, options: JSONSerialization.WritingOptions.prettyPrinted) as Data
                 let backToString = String(data: jsonData, encoding: String.Encoding.utf8)
                 print(backToString as Any)
             }
+                
             catch let errorObj {
                 
                 print(errorObj)
@@ -107,7 +112,9 @@ class CoreNetwork: NSObject {
             
             if dataResponse.error == nil{
                 
-                completion(dataResponse.data!)
+                let stringValue = String(data: dataResponse.data!, encoding: .ascii) ?? ""
+                let backToData = stringValue.data(using: .utf8)! as Data
+                completion(backToData)
             }
             else{
                 

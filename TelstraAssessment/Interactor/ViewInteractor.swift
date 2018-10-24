@@ -10,8 +10,20 @@ import UIKit
 
 protocol ViewInteractorProtocol {
     
+    func getListOfData()
 }
 
 class ViewInteractor: ViewInteractorProtocol {
-
+    
+    
+    func getListOfData() {
+        
+        ServiceLayer.sharedInstance().getListData(completion: { (obj) in
+            
+            
+        }) { (errorObj) in
+            
+            
+        }
+    }
 }
