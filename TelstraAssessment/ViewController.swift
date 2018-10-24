@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ViewControllerProtocol {
+    
+    
+}
+
 class ViewController: UIViewController {
     
     lazy var collectionView:UICollectionView = {

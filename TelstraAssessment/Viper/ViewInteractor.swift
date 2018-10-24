@@ -15,7 +15,7 @@ protocol ViewInteractorProtocol {
 
 class ViewInteractor: ViewInteractorProtocol {
     
-    
+    var presenter:ViewPresenterProtocol?
     func getListOfData() {
         
         ServiceLayer.sharedInstance().getListData(completion: { (obj) in
