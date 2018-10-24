@@ -33,6 +33,7 @@
 		008F13922180669200B11584 /* ServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008F13902180669200B11584 /* ServiceObject.swift */; };
 		008F13942180715200B11584 /* ViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008F13932180715200B11584 /* ViewPresenter.swift */; };
 		008F13952180715200B11584 /* ViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008F13932180715200B11584 /* ViewPresenter.swift */; };
+		008F13982180896500B11584 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE4AD217F1C8500DC22D6 /* ViewController.swift */; };
 		0F1E6E482268D198956B3093 /* Pods_TelstraAssessmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C62D38C66522914D0E8603 /* Pods_TelstraAssessmentTests.framework */; };
 		C8FF1A9B5567158358905DA6 /* Pods_TelstraAssessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779061C1FC55DB2DC16799B9 /* Pods_TelstraAssessment.framework */; };
 /* End PBXBuildFile section */
@@ -397,6 +398,7 @@
 				003CE4D7217F25D800DC22D6 /* CollectionViewCell.swift in Sources */,
 				008F13852180567800B11584 /* UIUtilities.swift in Sources */,
 				008F138E2180655500B11584 /* ErrorHandler.swift in Sources */,
+				008F13982180896500B11584 /* ViewController.swift in Sources */,
 				003CE4C1217F1C8800DC22D6 /* TelstraAssessmentTests.swift in Sources */,
 				008F13952180715200B11584 /* ViewPresenter.swift in Sources */,
 				008F13922180669200B11584 /* ServiceObject.swift in Sources */,

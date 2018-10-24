@@ -21,16 +21,38 @@ class TelstraAssessmentTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testTitleString(){
+        
+        let promise = expectation(description: "Title string value recieved")
+        ServiceLayer.sharedInstance().getListData(completion: { (dataOject) in
+            
+            if (dataOject.title?.count)! > 0{
+                
+                promise.fulfill()
+            }
+            else{
+                
+                XCTFail("Unable to read title string from server")
+            }
+            
+        }) { (errorObject) in
+            
+            XCTFail(errorObject.title!)
         }
+        
+        waitForExpectations(timeout: 60, handler: nil)
     }
-    
+    func testNetworkResponse(){
+        
+        let promise = expectation(description: "Data collected")
+        ServiceLayer.sharedInstance().getListData(completion: { (dataOject) in
+            
+            promise.fulfill()
+        }) { (errorObject) in
+            
+            XCTFail(errorObject.title!)
+        }
+        
+        waitForExpectations(timeout: 60, handler: nil)
+    }
 }
