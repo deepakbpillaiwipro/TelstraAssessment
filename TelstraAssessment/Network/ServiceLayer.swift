@@ -33,7 +33,7 @@ class ServiceLayer: NSObject {
     }
     
     //MARK:- INTERNAL METHODS
-    func getListData(completion:@escaping(_ dataObj:ServiceObject)->Void, error:@escaping (_ errorObj:POSError)->Void){
+    func getListData(completion:@escaping(_ dataObj:ServiceObject)->Void, error:@escaping (_ errorObj:ErrorInfo)->Void){
         
         if CommonUtilities.isConnectedToInternet(){
             
@@ -43,17 +43,6 @@ class ServiceLayer: NSObject {
                 do{
                     
                     let decodedListResponseData:ServiceObject = try JSONDecoder().decode(ServiceObject.self, from: dataObj)
-                    
-                    //Removing empty array from list
-                    var looper = 0
-                    for dataObject:ServiceListObject in decodedListResponseData.rows!{
-                        
-                        if dataObject.titleString == nil && dataObject.descriptionString == nil && dataObject.imageLinkStrig == nil{
-                            
-                            decodedListResponseData.rows?.remove(at: looper)
-                        }
-                        looper+=1
-                    }
                     completion(decodedListResponseData)
                 }
                 catch let errorObj {

@@ -10,7 +10,8 @@ import UIKit
 
 protocol ViewControllerProtocol {
     
-    
+    func showList(title:String, rows:[ServiceListObject])
+    func showError(message:String)
 }
 
 class ViewController: UIViewController {

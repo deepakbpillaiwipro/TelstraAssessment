@@ -16,7 +16,7 @@ public enum ErrorConstants:Int{
     case jsonParserError
 }
 
-struct POSError: Error {
+struct ErrorInfo: Error {
     
     var title:String?
     var code:Int?
@@ -32,10 +32,10 @@ struct POSError: Error {
 class ErrorHandler: NSObject {
     
     //Decide what to do with the error object
-    class func handleError(errorObj:Error, errorType:ErrorConstants, file:String, function:String)->POSError{
+    class func handleError(errorObj:Error, errorType:ErrorConstants, file:String, function:String)->ErrorInfo{
         
         //This code is for temp puropse.
         print("Error in \(function):: \(errorObj.localizedDescription)")
-        return POSError.init(title: "error string", code: 12)
+        return ErrorInfo.init(title: "error string", code: 12)
     }
 }
