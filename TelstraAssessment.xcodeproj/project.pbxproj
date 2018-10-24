@@ -56,8 +56,8 @@
 		003CE4BC217F1C8800DC22D6 /* TelstraAssessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelstraAssessmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		003CE4C0217F1C8800DC22D6 /* TelstraAssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelstraAssessmentTests.swift; sourceTree = "<group>"; };
 		003CE4C2217F1C8800DC22D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		003CE4D5217F25D800DC22D6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = UI/CollectionViewCell.swift; sourceTree = "<group>"; };
-		003CE4D8217F308900DC22D6 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewExtension.swift; path = UI/ViewExtension.swift; sourceTree = "<group>"; };
+		003CE4D5217F25D800DC22D6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		003CE4D8217F308900DC22D6 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		008F1378218054AE00B11584 /* ViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInteractor.swift; sourceTree = "<group>"; };
 		008F137C218054F400B11584 /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
 		008F137F2180551700B11584 /* CoreNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreNetwork.swift; sourceTree = "<group>"; };
@@ -118,14 +118,13 @@
 		003CE4AA217F1C8500DC22D6 /* TelstraAssessment */ = {
 			isa = PBXGroup;
 			children = (
+				008F13972180757C00B11584 /* UI */,
 				008F138F2180667C00B11584 /* Model */,
 				008F13822180566C00B11584 /* Utilities */,
 				008F137B218054D900B11584 /* Network */,
 				008F13772180547000B11584 /* Viper */,
 				003CE4AB217F1C8500DC22D6 /* AppDelegate.swift */,
 				003CE4AD217F1C8500DC22D6 /* ViewController.swift */,
-				003CE4D8217F308900DC22D6 /* ViewExtension.swift */,
-				003CE4D5217F25D800DC22D6 /* CollectionViewCell.swift */,
 				003CE4B2217F1C8800DC22D6 /* Assets.xcassets */,
 				003CE4B7217F1C8800DC22D6 /* Info.plist */,
 			);
@@ -176,6 +175,15 @@
 				008F13902180669200B11584 /* ServiceObject.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		008F13972180757C00B11584 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				003CE4D8217F308900DC22D6 /* ViewExtension.swift */,
+				003CE4D5217F25D800DC22D6 /* CollectionViewCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		4899360BDDEF1A65F903A3C4 /* Frameworks */ = {
