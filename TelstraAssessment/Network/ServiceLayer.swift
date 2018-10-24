@@ -48,17 +48,19 @@ class ServiceLayer: NSObject {
                 catch let errorObj {
                     
                     //Try catch error block
-                    error(ErrorHandler.handleError(errorObj: errorObj, errorType: .jsonParserError, file: #file, function: #function))
+                    error(ErrorHandler.handleError(errorObj: errorObj as NSError, errorType: .jsonParserError, file: #file, function: #function))
                 }
             }, error: { (errorObj) in
                 
                 //Network error block
-                error(ErrorHandler.handleError(errorObj: errorObj, errorType: .networkError, file: #file, function: #function))
+                error(ErrorHandler.handleError(errorObj: errorObj as NSError, errorType: .networkError, file: #file, function: #function))
             })
         }
         else{
             
             //Show error
+            let errorObject = NSError(domain:Constants.NetworkConstants.kServiceError, code:401, userInfo:[Constants.NetworkConstants.kErrorUserInfo:Constants.ApplicationConstants.networkConnectivityIssueString])
+            error(ErrorHandler.handleError(errorObj: errorObject, errorType: .apiServiceError, file: #file, function: #function))
         }
     }
 }

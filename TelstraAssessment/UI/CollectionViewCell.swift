@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CollectionViewCell: UICollectionViewCell {
     
-    lazy var width: NSLayoutConstraint = {
+    private lazy var width: NSLayoutConstraint = {
         
         let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
         width.isActive = true
         return width
     }()
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +26,7 @@ class CollectionViewCell: UICollectionViewCell {
         return titleLabel
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +34,7 @@ class CollectionViewCell: UICollectionViewCell {
         return descriptionLabel
     }()
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,5 +86,23 @@ class CollectionViewCell: UICollectionViewCell {
             contentView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
             contentView.bottomAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: 5)
         ])
+    }
+    
+    func resetCellElements(){
+        
+        //Resetting reused cells
+        self.titleLabel.text = ""
+        self.descriptionLabel.text = ""
+        self.imageView.image = UIImage.init(named: Constants.ApplicationConstants.placeholderImage)
+    }
+    func setOject(listObject:ServiceListObject){
+        
+        //Assign Values
+        self.titleLabel.text = listObject.titleString
+        self.descriptionLabel.text = listObject.descriptionString
+        if let imageUrl = listObject.imageLinkStrig{
+            
+            self.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:Constants.ApplicationConstants.placeholderImage), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)
+        }
     }
 }

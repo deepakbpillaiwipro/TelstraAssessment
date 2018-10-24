@@ -32,10 +32,14 @@ struct ErrorInfo: Error {
 class ErrorHandler: NSObject {
     
     //Decide what to do with the error object
-    class func handleError(errorObj:Error, errorType:ErrorConstants, file:String, function:String)->ErrorInfo{
+    class func handleError(errorObj:NSError, errorType:ErrorConstants, file:String, function:String)->ErrorInfo{
         
         //This code is for temp puropse.
         print("Error in \(function):: \(errorObj.localizedDescription)")
-        return ErrorInfo.init(title: "error string", code: 12)
+        guard let errorInfo = errorObj.userInfo[Constants.NetworkConstants.kErrorUserInfo] else {
+            
+            return ErrorInfo.init(title: Constants.ApplicationConstants.unknownErrorString, code: -1)
+        }
+        return ErrorInfo.init(title: errorInfo as? String, code: errorObj.code)
     }
 }

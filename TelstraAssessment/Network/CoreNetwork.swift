@@ -112,9 +112,9 @@ class CoreNetwork: NSObject {
             
             if dataResponse.error == nil{
                 
-                let stringValue = String(data: dataResponse.data!, encoding: .ascii) ?? ""
-                let backToData = stringValue.data(using: .utf8)! as Data
-                completion(backToData)
+                let convertToStringValue = String(data: dataResponse.data!, encoding: .ascii) ?? ""
+                let backToDataObject = convertToStringValue.data(using: .utf8)! as Data
+                completion(backToDataObject)
             }
             else{
                 

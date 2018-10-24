@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol ViewControllerProtocol {
     
@@ -25,20 +24,10 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CollectionViewCell
-        //Resetting reused cells
-        cell.titleLabel.text = ""
-        cell.descriptionLabel.text = ""
-        cell.imageView.image = UIImage.init(named: "placeholder")
-        
-        //Assign Values
-        if let listData = self.listData{
+        cell.resetCellElements()
+        if let listObject = self.listData{
          
-            cell.titleLabel.text = listData[indexPath.item].titleString
-            cell.descriptionLabel.text = listData[indexPath.item].descriptionString
-            if let imageUrl = listData[indexPath.item].imageLinkStrig{
-                
-                cell.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:"placeholder"), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)
-            }
+            cell.setOject(listObject: listObject[indexPath.item])
         }
         return cell
     }

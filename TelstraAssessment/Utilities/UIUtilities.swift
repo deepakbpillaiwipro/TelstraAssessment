@@ -11,7 +11,6 @@ import MBProgressHUD
 
 class UIUtilities: NSObject {
 
-    
     class func showGlobalProgressHUD(withTitle title: String?) {
         
         DispatchQueue.main.async {
