@@ -76,14 +76,15 @@ class CollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
             imageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
             imageView.heightAnchor.constraint(equalToConstant: 100),
             imageView.widthAnchor.constraint(equalToConstant: 100),
-            descriptionLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
+            titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
+            titleLabel.heightAnchor.constraint(equalToConstant: 25),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             descriptionLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
             descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
             contentView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
@@ -103,6 +104,7 @@ class CollectionViewCell: UICollectionViewCell {
         //Assign Values
         self.titleLabel.text = listObject.titleString
         self.descriptionLabel.text = listObject.descriptionString
+        descriptionLabel.sizeToFit()
         if let imageUrl = listObject.imageLinkStrig{
             
             self.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:Constants.ApplicationConstants.placeholderImage), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)

@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.size.width
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 4
         layout.estimatedItemSize = CGSize(width: width, height: 10)
         return layout
     }()
