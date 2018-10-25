@@ -45,6 +45,13 @@ class CollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private lazy var bottomLine:UIView  = {
+        let bottomLine = UIView()
+        bottomLine.backgroundColor = UIColor.lightGray
+        bottomLine.translatesAutoresizingMaskIntoConstraints = false
+        return bottomLine
+    }()
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -69,6 +76,7 @@ class CollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(imageView)
         contentView.addSubview(descriptionLabel)
+        contentView.addSubview(bottomLine)
         activateConstants()
     }
     
@@ -87,7 +95,11 @@ class CollectionViewCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             descriptionLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
             descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
-            contentView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomLine.topAnchor, constant: -5),
+            bottomLine.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            bottomLine.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            bottomLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            bottomLine.heightAnchor.constraint(equalToConstant: 1),
             contentView.bottomAnchor.constraint(greaterThanOrEqualTo: imageView.bottomAnchor, constant: 5)
         ])
     }
@@ -104,7 +116,6 @@ class CollectionViewCell: UICollectionViewCell {
         //Assign Values
         self.titleLabel.text = listObject.titleString
         self.descriptionLabel.text = listObject.descriptionString
-        descriptionLabel.sizeToFit()
         if let imageUrl = listObject.imageLinkStrig{
             
             self.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:Constants.ApplicationConstants.placeholderImage), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)
