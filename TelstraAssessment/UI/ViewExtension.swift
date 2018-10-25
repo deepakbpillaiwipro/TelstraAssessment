@@ -48,6 +48,12 @@ extension ViewControllerProtocol where Self:ViewController{
     
     func showList(title: String, rows: [ServiceListObject]) {
         
+        //Alert if no rows from in the response 
+        if rows.count == 0 {
+            
+           self.navigationController?.present(CommonUtilities.showAlert(message: Constants.ApplicationConstants.noRecordErrorString), animated: true, completion: nil)
+            return
+        }
         self.listData = rows
         self.title = title
         self.collectionView.reloadData()
@@ -55,7 +61,14 @@ extension ViewControllerProtocol where Self:ViewController{
     
     func showError(message: String) {
         
-        self.title = ""
+        DispatchQueue.main.async {
+            
+            self.title = ""
+            self.listData = nil
+            self.collectionView.reloadData()
+            self.refreshControl.isHidden = true
+        }
         self.navigationController?.present(CommonUtilities.showAlert(message: message), animated: true, completion: nil)
+        self.refreshControl.isHidden = false
     }
 }

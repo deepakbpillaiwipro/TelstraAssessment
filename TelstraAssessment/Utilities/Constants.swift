@@ -21,9 +21,10 @@ struct Constants {
     struct ApplicationConstants {
         
         static let loadingString = "Loading.."
-        static let okeyString = "Ok"
+        static let okeyString = "OK"
         static let placeholderImage = "placeholder"
         static let networkConnectivityIssueString = "Unable to connect to network. Please check your internet connection"
-        static let unknownErrorString = "Unknown error"
+        static let unknownErrorString = "Unknown Error"
+        static let noRecordErrorString = "No records to display"
     }
 }
