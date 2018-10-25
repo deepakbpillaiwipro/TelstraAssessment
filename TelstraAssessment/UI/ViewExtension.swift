@@ -14,7 +14,7 @@ protocol ViewControllerProtocol {
     func showError(message:String)
 }
 
-extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension ViewController:ViewControllerProtocol, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -44,7 +44,7 @@ extension ViewController:UICollectionViewDataSource, UICollectionViewDelegate, U
     }
 }
 
-extension ViewController : ViewControllerProtocol{
+extension ViewControllerProtocol where Self:ViewController{
     
     func showList(title: String, rows: [ServiceListObject]) {
         
