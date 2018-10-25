@@ -22,6 +22,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.medium)
         titleLabel.numberOfLines = 0
         return titleLabel
     }()
@@ -30,6 +31,8 @@ class CollectionViewCell: UICollectionViewCell {
         
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)
+        descriptionLabel.textColor = UIColor.darkGray
         descriptionLabel.numberOfLines = 0
         return descriptionLabel
     }()
