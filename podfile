@@ -8,6 +8,7 @@ target 'TelstraAssessment' do
   pod 'Alamofire', '~> 4.6'
   pod 'Kingfisher', '~> 4.0'
   pod 'MBProgressHUD'
+  pod 'NotificationBannerSwift'
   
   target 'TelstraAssessmentTests' do
       inherit!:search_paths
