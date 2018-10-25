@@ -73,7 +73,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
             imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
