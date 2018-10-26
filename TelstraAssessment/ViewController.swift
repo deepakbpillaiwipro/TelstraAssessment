@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         refreshControl.tintColor = .blue
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView.alwaysBounceVertical = true
+        refreshControl.tintColor = UIColor.gray
         return refreshControl
     }()
     
