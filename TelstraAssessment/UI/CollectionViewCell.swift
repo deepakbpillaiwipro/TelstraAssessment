@@ -95,7 +95,7 @@ class CollectionViewCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             descriptionLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
             descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomLine.topAnchor, constant: -5),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomLine.topAnchor, constant: -5),
             bottomLine.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             bottomLine.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             bottomLine.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -115,7 +115,8 @@ class CollectionViewCell: UICollectionViewCell {
         
         //Assign Values
         self.titleLabel.text = listObject.titleString
-        self.descriptionLabel.text = listObject.descriptionString
+        self.descriptionLabel.text = listObject.descriptionString?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.descriptionLabel.textAlignment = .left
         if let imageUrl = listObject.imageLinkStrig{
             
             self.imageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named:Constants.ApplicationConstants.placeholderImage), options: [.transition(ImageTransition.fade(1))], progressBlock: nil, completionHandler: nil)
